@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データセンター建設事業における 安全・環境対策情報サイト</title>
+    <title>データセンター建設事業 安全・環境対策情報サイト</title>
     <style>
-        /* 基本のカラースキーム（明るい緑色ベースに変更） */
+        /* 基本のカラースキーム（明るい緑色ベース） */
         :root {
-            --main-color: #28a745; /* 明るく安心感のある緑色 */
+            --main-color: #009966; 
             --text-color: #333333;
             --bg-color: #ffffff;
-            --gray-bg: #f4f9f5; /* 背景のグレーもほんのり緑がかった色に調整 */
+            --gray-bg: #f4f9f5; 
             --border-color: #dddddd;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; color: var(--text-color); background-color: var(--bg-color); line-height: 1.8; letter-spacing: 0.05em; scroll-behavior: smooth; /* クリック時にスルスルとスクロールする設定 */ }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; color: var(--text-color); background-color: var(--bg-color); line-height: 1.8; letter-spacing: 0.05em; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
 
         /* ヘッダーとメニューバー */
         header { background-color: var(--bg-color); position: fixed; top: 0; left: 0; width: 100%; min-height: 70px; border-bottom: 3px solid var(--main-color); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .header-title { font-size: 18px; font-weight: bold; color: var(--main-color); margin-right: 20px; }
+        
+        /* メニューのスタイル */
+        .nav-menu { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
+        .nav-menu a { font-size: 14px; font-weight: bold; color: var(--text-color); padding: 5px; transition: color 0.3s ease; }
+        .nav-menu a:hover { color: var(--main-color); border-bottom: 2px solid var(--main-color); }
 
         /* ヒーローイメージ */
         .hero-image-area {
             width: 100%;
-            margin-top: 70px; /* 固定ヘッダーの高さ分だけ下にずらします */
+            margin-top: 70px; /* 固定ヘッダーの高さ分 */
             position: relative;
             overflow: hidden;
         }
@@ -33,30 +38,10 @@
             width: 100%;
             display: block;
             object-fit: cover;
-            max-height: 400px; /* パソコン画面で画像が縦に大きくなりすぎないように制限 */
+            max-height: 400px; 
         }
-        
-        /* 画像の上に文字を重ねる場合のスタイル（おまけ） */
-        .hero-text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 90%;
-            color: #ffffff;
-            font-size: 28px;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 文字が読みやすいように影をつけます */
-        }
-        
-        /* メニューのスタイル */
-        .nav-menu { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
-        .nav-menu a { font-size: 14px; font-weight: bold; color: var(--text-color); padding: 5px; transition: color 0.3s ease; }
-        .nav-menu a:hover { color: var(--main-color); border-bottom: 2px solid var(--main-color); }
 
-        /* セクション（各コンテンツのまとまり） */
-        /* メニューバーが上部にあるため、上の余白(padding)を広めに設定しています */
+        /* セクション */
         section { padding: 100px 20px 40px; max-width: 900px; margin: 0 auto; border-bottom: 1px dashed var(--border-color); }
         section:last-of-type { border-bottom: none; }
         
@@ -77,16 +62,102 @@
         .btn { display: inline-block; padding: 15px 30px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; border-radius: 5px; border: none; transition: opacity 0.3s; background-color: var(--main-color); color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .btn:hover { opacity: 0.8; color: #fff; }
 
-        /* FAQ（アコーディオン） */
-        details { background-color: var(--gray-bg); margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
-        summary { padding: 15px; font-weight: bold; cursor: pointer; list-style: none; position: relative; }
-        summary::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; }
-        details[open] summary::after { content: '-'; }
-        .faq-answer { padding: 15px; background-color: #fff; border-top: 1px solid var(--border-color); border-radius: 0 0 8px 8px; }
-
         /* 地図などの埋め込み枠 */
         .iframe-container { width: 100%; height: 400px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; }
         .image-placeholder { width: 100%; height: 250px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #6c757d; border-radius: 8px; margin-bottom: 20px; font-weight: bold; }
+
+        /* FAQ タブと枠線のデザイン */
+        .faq-container { margin-top: 20px; }
+        .faq-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+        .faq-tab-btn {
+            background-color: #e9ecef;
+            color: #6c757d;
+            border: none;
+            padding: 12px 30px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-tab-btn.active {
+            background-color: #009966;
+            color: #ffffff;
+        }
+        .faq-content-box {
+            border: 1px solid #e0e0e0;
+            border-top: 3px solid #009966; 
+            border-radius: 0 8px 8px 8px;
+            padding: 25px;
+            background-color: #ffffff;
+        }
+
+        /* カスタムアコーディオンのデザイン */
+        .custom-details {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .custom-summary {
+            padding: 15px 20px;
+            font-weight: bold;
+            color: #009966;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+        }
+        .custom-summary::-webkit-details-marker { display: none; }
+        
+        /* 開閉アイコン（＋と×） */
+        .toggle-icon {
+            background-color: #e6f5ef;
+            color: #009966;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        .custom-details[open] .toggle-icon { content: "×"; font-size: 16px; }
+        .custom-details:not([open]) .toggle-icon::before { content: "＋"; }
+        .custom-details[open] .toggle-icon::before { content: "×"; }
+
+        .custom-answer {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            background-color: #ffffff;
+        }
+
+        /* 「分かっていること」バッジ */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e6f5ef;
+            color: #009966;
+            border: 1px solid #75c9a8;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .status-badge::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #009966;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
@@ -102,15 +173,12 @@
                 <li><a href="#faq">よくある質問</a></li>
                 <li><a href="#form">意見フォーム</a></li>
             </ul>
-        </nav>    
+        </nav>
     </header>
-    <!-- （１.５）ヒーローイメージ -->
+
+    <!-- ヒーローイメージ -->
     <div class="hero-image-area">
-        <!-- src="..." の部分を実際の画像のURLやファイル名に書き換えます -->
-        <img src="hero.png" alt="メインビジュアル" class="hero-image">
-        
-        <!-- もし画像の上に文字を重ねたい場合は、以下の行の最初と最後にある「< ! - -」と「- - >」を消して使ってください -->
-        <!-- <div class="hero-text-overlay">安全と安心を第一に考えたまちづくり</div> -->
+        <img src="https://via.placeholder.com/1200x400/009966/ffffff?text=Hero+Image" alt="メインビジュアル" class="hero-image">
     </div>
 
     <!-- （２）冒頭（新着情報・今後の予定） -->
@@ -171,78 +239,160 @@
         </table>
 
         <h3>日影シミュレーション</h3>
-        <!-- 画像やダッシュボードを埋め込むスペース -->
         <div class="image-placeholder">
             [ここに日影シミュレーションの画像を挿入します]
         </div>
 
         <h3>工事車両の迂回ルートおよび時間帯規制図</h3>
         <p>通学路や子どもへの影響を避けるため、以下のルートを工事車両の専用ルートとし、登下校の時間帯（7:30〜8:30 / 15:00〜16:00）は通行を禁止します。</p>
-        <!-- Google Mapsの埋め込み -->
         <iframe class="iframe-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100000.00000000000!2d130.8!3d33.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ4JzAwLjAiTiAxMzDCsDQ4JzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1000000000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
     <!-- （５）市民からよくある質問 -->
     <section id="faq">
         <h2>市民からよくある質問</h2>
-        
-        <details>
-            <summary>Q1. データセンター建設に対する市の受け止めは？</summary>
-            <div class="faq-answer">
-                <p>① 大切な子どもたちが通う小学校の隣ですから、ご不安の声には誠心誠意お答えしなければと痛感しております。だからこそ、さまざまな形で対話を重ねてまいります。</p>
-                <p>② 市として、計画を一方的に押し通すつもりは全くありません。『今すぐできる最優先の安全対策』を速やかに実行しながら、ご懸念に寄り添って直接意見交換をさせていただく。その上で、周辺環境の安心を守るためにどんなお約束ができるか、どうすれば子どもたちの教育にプラスとなり得るかを、住民の皆様と精一杯考えていきたいと思っております。</p>
-                <p>③ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
-            </div>
-        </details>
 
-        <details>
-            <summary>Q2. 北九州市はなぜ、小学校や住宅地の近隣にデータセンターを誘致したのですか？</summary>
-            <div class="faq-answer">
-                <p>① まず、今回のデータセンターについては、小学校や住宅の隣だから、誘致を進めたものではない。</p>
-                <p>② データセンターは、24時間365日の安定した稼働が求められる施設であり、その立地場所の条件として、<br>
-                ・大規模かつ安定した電力を早期に確保できること<br>
-                ・高速・大容量の通信環境が整っていること<br>
-                ・災害リスクが低く、強固な地盤を有すること<br>
-                ・一定規模の用地を確保できること<br>
-                などが求められる。</p>
-                <p>③ 今回の土地については、こうしたデータセンターに求められる条件を満たしており、特に、近傍に複数の変電所があることなど、安定した電力を確保しやすい点をはじめとする立地条件が事業者から評価され、その結果、2023年（令和5年）に議会の議決を経て、当該用地の売却に至ったものである。</p>
-                <p>④ しかしながら、データセンターとして立地条件が適していることと、生活環境や教育環境の「安全安心」は別次元の問題であると認識しており、市としては、地域の皆さまが抱かれている一つひとつの不安や懸念を丁寧に受け止め、事業者に対して具体的な対策を求めるとともに、法令や基準を満たす「安全」にとどまらず、地域の皆さまの「安心」を第一に、全力で取り組んでまいりたい。</p>
+        <div class="faq-container">
+            <!-- タブボタン -->
+            <div class="faq-tabs">
+                <button class="faq-tab-btn active" onclick="filterFaq('すべて', this)">全体</button>
+                <button class="faq-tab-btn" onclick="filterFaq('環境', this)">環境</button>
+                <button class="faq-tab-btn" onclick="filterFaq('安全', this)">安全</button>
+                <button class="faq-tab-btn" onclick="filterFaq('その他', this)">その他</button>
             </div>
-        </details>
 
-        <details>
-            <summary>Q3. 説明会等で出た住民の意見や要望について、市はどう対応しているのですか？</summary>
-            <div class="faq-answer">
-                <p>① 説明会等でいただいた意見や要望については、真摯に受け止め、今できる最優先の対策について、具体的に対応しているところです。</p>
-                <p>② 具体的には、<br>
-                ・今月3日からは産業経済局と教育委員会で連携し、1日延べ8人の市職員による通学路の見守り<br>
-                ・通学路の安全確保のための歩道整備に向けた調整<br>
-                ・事業者と調整して、騒音を下げる対策<br>
-                ・工事周辺のお宅への戸別訪問<br>
-                などを行っているところです。</p>
-                <p>③ 先週には、関係部局横断の「ひびきの地区データセンターワーキングチーム」を設置（産経、教育、都市戦略、若松区など）し、さらなる対策を検討実施しているところである。</p>
-                <p>④ さらなる追加対策として、<br>
-                ・学術研究都市内に常設の相談窓口の開設<br>
-                ・市主催の住民意見交換の開催<br>
-                ・定期的な意見交換会の場の設置<br>
-                ・事業全体について分かりやすく情報をお伝えするホームページの開設<br>
-                に向けた準備を進めています。</p>
-                <p>⑤ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
+            <!-- 質問コンテンツエリア -->
+            <div class="faq-content-box">
+                
+                <!-- Q1 -->
+                <details class="custom-details faq-item" data-category="全体">
+                    <summary class="custom-summary">
+                        Q1. なぜこの場所（小学校の近く）にデータセンターを誘致したのですか？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">分かっていること</div>
+                        <p>① まず、今回のデータセンターについては、小学校や住宅の隣だから、誘致を進めたものではありません。</p>
+                        <p>② データセンターは、24時間365日の安定した稼働が求められる施設であり、その立地場所の条件として以下が求められます。</p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>大規模かつ安定した電力を早期に確保できること</li>
+                            <li>高速・大容量の通信環境が整っていること</li>
+                            <li>災害リスクが低く、強固な地盤を有すること</li>
+                            <li>一定規模の用地を確保できること</li>
+                        </ul>
+                        <p>③ 今回の土地については、こうしたデータセンターに求められる条件を満たしており、特に、近傍に複数の変電所があることなど、安定した電力を確保しやすい点をはじめとする立地条件が事業者から評価され、その結果、2023年（令和5年）に議会の議決を経て、当該用地の売却に至ったものです。</p>
+                        <p>④ しかしながら、データセンターとして立地条件が適していることと、生活環境や教育環境の「安全安心」は別次元の問題であると認識しており、市としては、地域の皆さまが抱かれている一つひとつの不安や懸念を丁寧に受け止め、事業者に対して具体的な対策を求めるとともに、法令や基準を満たす「安全」にとどまらず、地域の皆さまの「安心」を第一に、全力で取り組んでまいりたい。</p>
+                    </div>
+                </details>
+
+                <!-- Q2 -->
+                <details class="custom-details faq-item" data-category="安全">
+                    <summary class="custom-summary">
+                        Q2. 児童の登下校時（通学路）の安全対策はどうなっているか？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">分かっていること</div>
+                        <p>① 説明会等でいただいた意見や要望については、真摯に受け止め、今できる最優先の対策について、具体的に対応しているところです。</p>
+                        <p>② 具体的には以下の対応を行っています。</p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>今月3日からは産業経済局と教育委員会で連携し、1日延べ8人の市職員による通学路の見守り</li>
+                            <li>通学路の安全確保のための歩道整備に向けた調整</li>
+                            <li>事業者と調整して、騒音を下げる対策</li>
+                            <li>工事周辺のお宅への戸別訪問</li>
+                        </ul>
+                        <p>③ 先週には、関係部局横断の「ひびきの地区データセンターワーキングチーム」を設置（産経、教育、都市戦略、若松区など）し、さらなる対策を検討実施しているところである。</p>
+                    </div>
+                </details>
+
+                <!-- Q3 -->
+                <details class="custom-details faq-item" data-category="環境">
+                    <summary class="custom-summary">
+                        Q3. 電磁波による子どもや住民の健康への影響はないか？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">確認中・準備中</div>
+                        <p>※こちらの回答は現在準備中です。</p>
+                    </div>
+                </details>
+
+                <!-- Q4 -->
+                <details class="custom-details faq-item" data-category="環境">
+                    <summary class="custom-summary">
+                        Q4. 工事中および操業後の「騒音・振動・熱排気」はどう抑えるのか？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">確認中・準備中</div>
+                        <p>※こちらの回答は現在準備中です。</p>
+                    </div>
+                </details>
+
+                <!-- Q5 -->
+                <details class="custom-details faq-item" data-category="安全">
+                    <summary class="custom-summary">
+                        Q5. 災害時（地震・停電・大雨）の安全性や避難への影響は？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">確認中・準備中</div>
+                        <p>※こちらの回答は現在準備中です。</p>
+                    </div>
+                </details>
+
+                <!-- Q6 -->
+                <details class="custom-details faq-item" data-category="環境">
+                    <summary class="custom-summary">
+                        Q6. 景観や周辺の生活環境への配慮は？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">分かっていること</div>
+                        <p>① 北九州学術研究都市（ひびきの地区）は、子どもたちが安心して学び、家族が穏やかに暮らせる環境を大切にしながら、新しい産業や研究も育つまちを目指してきました。</p>
+                        <p>② 大学や研究機関、企業が集まり、新しい技術や産業が生まれる一方で、住宅地や小学校、保育園、商業施設なども整備され、教育や子育て、日々の暮らしが営まれています。</p>
+                        <p>③ そのため、研究や産業の発展と、地域の暮らしを両立させながら、ひびきの地区のまちづくりを進めてきたところです。</p>
+                        <p>④ 今回計画されているデータセンターは、AI をはじめとするデジタル社会を支える重要な施設である一方で、ひびきのには、子どもたちの学びや暮らし、日常の生活があります。</p>
+                        <p>⑤ そのため、データセンターの整備に対しては、通学路の安全や騒音など、地域の皆様が抱かれる一つひとつの不安や懸念を丁寧に受け止めたうえで、地域の暮らしと研究や産業の発展の両方が、今日より良いものになっていくよう、住民の皆様と精一杯考えていきたいと思っております。</p>
+                    </div>
+                </details>
+
+                <!-- Q7 -->
+                <details class="custom-details faq-item" data-category="全体">
+                    <summary class="custom-summary">
+                        Q7. 今後のスケジュールと、説明会・意見交換の予定は？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">分かっていること</div>
+                        <p>① 大切な子どもたちが通う小学校の隣ですから、ご不安の声には誠心誠意お答えしなければと痛感しております。だからこそ、さまざまな形で対話を重ねてまいります。</p>
+                        <p>② さらなる追加対策として、</p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>学術研究都市内に常設の相談窓口の開設</li>
+                            <li>市主催の住民意見交換の開催</li>
+                            <li>定期的な意見交換会の場の設置</li>
+                            <li>事業全体について分かりやすく情報をお伝えするホームページの開設</li>
+                        </ul>
+                        <p>に向けた準備を進めています。</p>
+                        <p>③ 市として、計画を一方的に押し通すつもりは全くありません。『今すぐできる最優先の安全対策』を速やかに実行しながら、ご懸念に寄り添って直接意見交換をさせていただく。その上で、周辺環境の安心を守るためにどんなお約束ができるか、どうすれば子どもたちの教育にプラスとなり得るかを、住民の皆様と精一杯考えていきたいと思っております。</p>
+                        <p>④ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
+                    </div>
+                </details>
+
+                <!-- Q8 -->
+                <details class="custom-details faq-item" data-category="その他">
+                    <summary class="custom-summary">
+                        Q8. 個別のご質問やご意見はどこに寄せればよいか？
+                        <span class="toggle-icon"></span>
+                    </summary>
+                    <div class="custom-answer">
+                        <div class="status-badge">ご案内</div>
+                        <p>※本サイト下部の「住民意見・質問受付フォーム」よりいつでもお寄せください。</p>
+                    </div>
+                </details>
+
             </div>
-        </details>
-
-        <details>
-            <summary>Q4. データセンターの建設に反対する意見が出ているが、北九州市は「ひびきの」をどういうまちにしたいと考えていますか？</summary>
-            <div class="faq-answer">
-                <p>① 北九州学術研究都市（ひびきの地区）は、子どもたちが安心して学び、家族が穏やかに暮らせる環境を大切にしながら、新しい産業や研究も育つまちを目指してきました。</p>
-                <p>② 大学や研究機関、企業が集まり、新しい技術や産業が生まれる一方で、住宅地や小学校、保育園、商業施設なども整備され、教育や子育て、日々の暮らしが営まれています。</p>
-                <p>③ そのため、研究や産業の発展と、地域の暮らしを両立させながら、ひびきの地区のまちづくりを進めてきたところです。</p>
-                <p>④ 今回計画されているデータセンターは、AIをはじめとするデジタル社会を支える重要な施設である一方で、ひびきのには、子どもたちの学びや暮らし、日常の生活があります。</p>
-                <p>⑤ そのため、データセンターの整備に対しては、通学路の安全や騒音など、地域の皆様が抱かれる一つひとつの不安や懸念を丁寧に受け止めたうえで、地域の暮らしと研究や産業の発展の両方が、今日より良いものになっていくよう、住民の皆様と精一杯考えていきたいと思っております。</p>
-                <p>⑥ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
-            </div>
-        </details>
-
+        </div>
         <h3 style="border:none; margin-top:20px;"><a href="#" style="color:var(--main-color); text-decoration:underline;">▶ ご意見・質問公開ログ（全件対応）を見る</a></h3>
     </section>
 
@@ -254,7 +404,6 @@
             お寄せいただいたご意見は、市で内容を確認し、回答を作成した上で本サイトの「公開ログ」に掲載いたします。<br>
             個別の質問を、同様の疑問を持つ市民の皆様に共有できる<strong>「公共的な情報資産」</strong>として蓄積してまいります。
         </p>
-        <!-- GrafferのURLを href の中に入れます -->
         <a href="https://graffer.jp/..." target="_blank" class="btn">電子申請システム（Graffer）で意見を送る</a>
     </section>
 
@@ -272,5 +421,27 @@
         <p>お問い合わせ：北九州市 〇〇局 〇〇課 電話番号 093-XXX-XXXX</p>
     </footer>
 
+    <!-- タブを切り替えるためのJavaScript -->
+    <script>
+        function filterFaq(category, clickedButton) {
+            // 1. すべてのタブから 'active' クラス（緑色）を外す
+            const buttons = document.querySelectorAll('.faq-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // 2. クリックされたタブだけ 'active' にする
+            clickedButton.classList.add('active');
+
+            // 3. 質問を表示・非表示にする
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                // 「すべて」が選ばれたか、カテゴリーが一致した場合は表示する
+                if (category === 'すべて' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
