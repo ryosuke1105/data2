@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データセンター建設事業における 安全・環境対策情報サイト</title>
+    <style>
+        /* 基本のカラースキーム（明るい緑色ベースに変更） */
+        :root {
+            --main-color: #28a745; /* 明るく安心感のある緑色 */
+            --text-color: #333333;
+            --bg-color: #ffffff;
+            --gray-bg: #f4f9f5; /* 背景のグレーもほんのり緑がかった色に調整 */
+            --border-color: #dddddd;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; color: var(--text-color); background-color: var(--bg-color); line-height: 1.8; letter-spacing: 0.05em; scroll-behavior: smooth; /* クリック時にスルスルとスクロールする設定 */ }
+        a { text-decoration: none; color: inherit; }
+
+        /* ヘッダーとメニューバー */
+        header { background-color: var(--bg-color); position: fixed; top: 0; left: 0; width: 100%; min-height: 70px; border-bottom: 3px solid var(--main-color); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-title { font-size: 18px; font-weight: bold; color: var(--main-color); margin-right: 20px; }
+        
+        /* メニューのスタイル */
+        .nav-menu { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
+        .nav-menu a { font-size: 14px; font-weight: bold; color: var(--text-color); padding: 5px; transition: color 0.3s ease; }
+        .nav-menu a:hover { color: var(--main-color); border-bottom: 2px solid var(--main-color); }
+
+        /* セクション（各コンテンツのまとまり） */
+        /* メニューバーが上部にあるため、上の余白(padding)を広めに設定しています */
+        section { padding: 100px 20px 40px; max-width: 900px; margin: 0 auto; border-bottom: 1px dashed var(--border-color); }
+        section:last-of-type { border-bottom: none; }
+        
+        h2 { font-size: 22px; color: #111; margin-bottom: 25px; padding-left: 15px; border-left: 6px solid var(--main-color); line-height: 1.4; }
+        h3 { font-size: 18px; color: var(--main-color); margin: 30px 0 15px; padding-bottom: 5px; border-bottom: 1px solid var(--border-color); }
+        p { margin-bottom: 15px; }
+
+        /* リストと表 */
+        ul.news-list { list-style: none; }
+        ul.news-list li { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .date-badge { display: inline-block; background: var(--gray-bg); padding: 2px 10px; border-radius: 4px; font-size: 14px; margin-right: 10px; border: 1px solid #ccc; color: #555; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 15px; }
+        th, td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
+        th { background-color: var(--gray-bg); font-weight: bold; }
+
+        /* ボタン */
+        .btn { display: inline-block; padding: 15px 30px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; border-radius: 5px; border: none; transition: opacity 0.3s; background-color: var(--main-color); color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .btn:hover { opacity: 0.8; color: #fff; }
+
+        /* FAQ（アコーディオン） */
+        details { background-color: var(--gray-bg); margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+        summary { padding: 15px; font-weight: bold; cursor: pointer; list-style: none; position: relative; }
+        summary::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 20px; }
+        details[open] summary::after { content: '-'; }
+        .faq-answer { padding: 15px; background-color: #fff; border-top: 1px solid var(--border-color); border-radius: 0 0 8px 8px; }
+
+        /* 地図などの埋め込み枠 */
+        .iframe-container { width: 100%; height: 400px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; }
+        .image-placeholder { width: 100%; height: 250px; background-color: #e9ecef; display: flex; align-items: center; justify-content: center; color: #6c757d; border-radius: 8px; margin-bottom: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- （１）ページタイトルとメニューバー（ヘッダー） -->
+    <header>
+        <div class="header-title">データセンター建設事業 安全・環境対策情報サイト</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#news">新着情報</a></li>
+                <li><a href="#overview">事業計画</a></li>
+                <li><a href="#environment">安全・環境対策</a></li>
+                <li><a href="#faq">よくある質問</a></li>
+                <li><a href="#form">意見フォーム</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- （２）冒頭（新着情報・今後の予定） -->
+    <section id="news">
+        <h2>新着情報・今後の予定</h2>
+        <ul class="news-list">
+            <li><span class="date-badge">2026年9月14日</span> 本サイト（安全・環境対策情報サイト）を公開しました。</li>
+            <li><span class="date-badge">2026年10月中旬</span> 【今後の予定】第1回 住民説明会を開催予定です。</li>
+        </ul>
+    </section>
+
+    <!-- （３）事業計画・事業概要 -->
+    <section id="overview">
+        <h2>事業計画・事業概要</h2>
+        <h3>現在の計画・進捗</h3>
+        <p>現在は基礎工事の段階に入っております。全体のスケジュールに対して計画通りに進行しています。</p>
+        
+        <h3>工事・建設の状況</h3>
+        <p>建設エリアの整地および、掘削工事を実施しています。安全を第一に作業を進めております。</p>
+    </section>
+
+    <!-- （４）安全・環境配慮対策 -->
+    <section id="environment">
+        <h2>安全・環境配慮対策</h2>
+        <p>周辺にお住まいの皆様、および近隣の学校・通学路への影響を最小限に抑えるため、厳格な基準を設けて対策を実施しています。</p>
+
+        <h3>客観的データの可視化（電磁波・騒音・熱排気）</h3>
+        <p>各種設備の稼働に伴う影響について、国の基準値や周辺の生活空間データと比較したシミュレーション結果です。</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>測定項目</th>
+                    <th>国の基準値等</th>
+                    <th>周辺の生活空間データ</th>
+                    <th>当施設からの影響（予測値）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>騒音（昼間）</td>
+                    <td>55 dB 以下</td>
+                    <td>約 45 dB</td>
+                    <td><strong>48 dB</strong>（基準クリア）</td>
+                </tr>
+                <tr>
+                    <td>電磁波</td>
+                    <td>200 μT 以下</td>
+                    <td>約 0.1 μT</td>
+                    <td><strong>0.5 μT</strong>（基準クリア）</td>
+                </tr>
+                <tr>
+                    <td>熱排気</td>
+                    <td>（周辺気温への影響）</td>
+                    <td>平均 25℃</td>
+                    <td><strong>+0.1℃未満</strong>（基準クリア）</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>日影シミュレーション</h3>
+        <!-- 画像やダッシュボードを埋め込むスペース -->
+        <div class="image-placeholder">
+            [ここに日影シミュレーションの画像を挿入します]
+        </div>
+
+        <h3>工事車両の迂回ルートおよび時間帯規制図</h3>
+        <p>通学路や子どもへの影響を避けるため、以下のルートを工事車両の専用ルートとし、登下校の時間帯（7:30〜8:30 / 15:00〜16:00）は通行を禁止します。</p>
+        <!-- Google Mapsの埋め込み -->
+        <iframe class="iframe-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100000.00000000000!2d130.8!3d33.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDQ4JzAwLjAiTiAxMzDCsDQ4JzAwLjAiRQ!5e0!3m2!1sja!2sjp!4v1000000000000!5m2!1sja!2sjp" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- （５）市民からよくある質問 -->
+    <section id="faq">
+        <h2>市民からよくある質問</h2>
+        
+        <details>
+            <summary>Q1. データセンター建設に対する市の受け止めは？</summary>
+            <div class="faq-answer">
+                <p>① 大切な子どもたちが通う小学校の隣ですから、ご不安の声には誠心誠意お答えしなければと痛感しております。だからこそ、さまざまな形で対話を重ねてまいります。</p>
+                <p>② 市として、計画を一方的に押し通すつもりは全くありません。『今すぐできる最優先の安全対策』を速やかに実行しながら、ご懸念に寄り添って直接意見交換をさせていただく。その上で、周辺環境の安心を守るためにどんなお約束ができるか、どうすれば子どもたちの教育にプラスとなり得るかを、住民の皆様と精一杯考えていきたいと思っております。</p>
+                <p>③ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Q2. 北九州市はなぜ、小学校や住宅地の近隣にデータセンターを誘致したのですか？</summary>
+            <div class="faq-answer">
+                <p>① まず、今回のデータセンターについては、小学校や住宅の隣だから、誘致を進めたものではない。</p>
+                <p>② データセンターは、24時間365日の安定した稼働が求められる施設であり、その立地場所の条件として、<br>
+                ・大規模かつ安定した電力を早期に確保できること<br>
+                ・高速・大容量の通信環境が整っていること<br>
+                ・災害リスクが低く、強固な地盤を有すること<br>
+                ・一定規模の用地を確保できること<br>
+                などが求められる。</p>
+                <p>③ 今回の土地については、こうしたデータセンターに求められる条件を満たしており、特に、近傍に複数の変電所があることなど、安定した電力を確保しやすい点をはじめとする立地条件が事業者から評価され、その結果、2023年（令和5年）に議会の議決を経て、当該用地の売却に至ったものである。</p>
+                <p>④ しかしながら、データセンターとして立地条件が適していることと、生活環境や教育環境の「安全安心」は別次元の問題であると認識しており、市としては、地域の皆さまが抱かれている一つひとつの不安や懸念を丁寧に受け止め、事業者に対して具体的な対策を求めるとともに、法令や基準を満たす「安全」にとどまらず、地域の皆さまの「安心」を第一に、全力で取り組んでまいりたい。</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Q3. 説明会等で出た住民の意見や要望について、市はどう対応しているのですか？</summary>
+            <div class="faq-answer">
+                <p>① 説明会等でいただいた意見や要望については、真摯に受け止め、今できる最優先の対策について、具体的に対応しているところです。</p>
+                <p>② 具体的には、<br>
+                ・今月3日からは産業経済局と教育委員会で連携し、1日延べ8人の市職員による通学路の見守り<br>
+                ・通学路の安全確保のための歩道整備に向けた調整<br>
+                ・事業者と調整して、騒音を下げる対策<br>
+                ・工事周辺のお宅への戸別訪問<br>
+                などを行っているところです。</p>
+                <p>③ 先週には、関係部局横断の「ひびきの地区データセンターワーキングチーム」を設置（産経、教育、都市戦略、若松区など）し、さらなる対策を検討実施しているところである。</p>
+                <p>④ さらなる追加対策として、<br>
+                ・学術研究都市内に常設の相談窓口の開設<br>
+                ・市主催の住民意見交換の開催<br>
+                ・定期的な意見交換会の場の設置<br>
+                ・事業全体について分かりやすく情報をお伝えするホームページの開設<br>
+                に向けた準備を進めています。</p>
+                <p>⑤ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>Q4. データセンターの建設に反対する意見が出ているが、北九州市は「ひびきの」をどういうまちにしたいと考えていますか？</summary>
+            <div class="faq-answer">
+                <p>① 北九州学術研究都市（ひびきの地区）は、子どもたちが安心して学び、家族が穏やかに暮らせる環境を大切にしながら、新しい産業や研究も育つまちを目指してきました。</p>
+                <p>② 大学や研究機関、企業が集まり、新しい技術や産業が生まれる一方で、住宅地や小学校、保育園、商業施設なども整備され、教育や子育て、日々の暮らしが営まれています。</p>
+                <p>③ そのため、研究や産業の発展と、地域の暮らしを両立させながら、ひびきの地区のまちづくりを進めてきたところです。</p>
+                <p>④ 今回計画されているデータセンターは、AIをはじめとするデジタル社会を支える重要な施設である一方で、ひびきのには、子どもたちの学びや暮らし、日常の生活があります。</p>
+                <p>⑤ そのため、データセンターの整備に対しては、通学路の安全や騒音など、地域の皆様が抱かれる一つひとつの不安や懸念を丁寧に受け止めたうえで、地域の暮らしと研究や産業の発展の両方が、今日より良いものになっていくよう、住民の皆様と精一杯考えていきたいと思っております。</p>
+                <p>⑥ 単に法令や基準を満たす『安全』だけでなく、皆様の『安心』を第一に考え、全力で心を尽くしてまいります。</p>
+            </div>
+        </details>
+
+        <h3 style="border:none; margin-top:20px;"><a href="#" style="color:var(--main-color); text-decoration:underline;">▶ ご意見・質問公開ログ（全件対応）を見る</a></h3>
+    </section>
+
+    <!-- （６）住民意見・質問受付フォーム -->
+    <section id="form" style="text-align: center;">
+        <h2>住民意見・質問受付フォーム</h2>
+        <p style="text-align: left; margin-bottom: 30px;">
+            本事業に関してご不明な点やご意見がございましたら、以下のフォームより24時間いつでもお寄せください。<br>
+            お寄せいただいたご意見は、市で内容を確認し、回答を作成した上で本サイトの「公開ログ」に掲載いたします。<br>
+            個別の質問を、同様の疑問を持つ市民の皆様に共有できる<strong>「公共的な情報資産」</strong>として蓄積してまいります。
+        </p>
+        <!-- GrafferのURLを href の中に入れます -->
+        <a href="https://graffer.jp/..." target="_blank" class="btn">電子申請システム（Graffer）で意見を送る</a>
+    </section>
+
+    <!-- （７）資料ダウンロード -->
+    <section id="download">
+        <h2>資料ダウンロード</h2>
+        <ul class="news-list">
+            <li><a href="#" style="color:var(--main-color); text-decoration:underline;">📄 第1回 住民説明会 配布資料（PDF）</a></li>
+            <li><a href="#" style="color:var(--main-color); text-decoration:underline;">📄 環境影響評価 準備書（PDF）</a></li>
+            <li><a href="#" style="color:var(--main-color); text-decoration:underline;">📄 工事車両運行計画書（PDF）</a></li>
+        </ul>
+    </section>
+
+    <footer style="background-color: #333; color: #fff; text-align: center; padding: 20px; font-size: 13px;">
+        <p>お問い合わせ：北九州市 〇〇局 〇〇課 電話番号 093-XXX-XXXX</p>
+    </footer>
+
+</body>
+</html>
