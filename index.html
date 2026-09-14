@@ -21,6 +21,34 @@
         /* ヘッダーとメニューバー */
         header { background-color: var(--bg-color); position: fixed; top: 0; left: 0; width: 100%; min-height: 70px; border-bottom: 3px solid var(--main-color); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .header-title { font-size: 18px; font-weight: bold; color: var(--main-color); margin-right: 20px; }
+
+        /* ヒーローイメージ */
+        .hero-image-area {
+            width: 100%;
+            margin-top: 70px; /* 固定ヘッダーの高さ分だけ下にずらします */
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 400px; /* パソコン画面で画像が縦に大きくなりすぎないように制限 */
+        }
+        
+        /* 画像の上に文字を重ねる場合のスタイル（おまけ） */
+        .hero-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 文字が読みやすいように影をつけます */
+        }
         
         /* メニューのスタイル */
         .nav-menu { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
@@ -74,8 +102,16 @@
                 <li><a href="#faq">よくある質問</a></li>
                 <li><a href="#form">意見フォーム</a></li>
             </ul>
-        </nav>
+        </nav>    
     </header>
+    <!-- （１.５）ヒーローイメージ -->
+    <div class="hero-image-area">
+        <!-- src="..." の部分を実際の画像のURLやファイル名に書き換えます -->
+        <img src="hero.png" alt="メインビジュアル" class="hero-image">
+        
+        <!-- もし画像の上に文字を重ねたい場合は、以下の行の最初と最後にある「< ! - -」と「- - >」を消して使ってください -->
+        <!-- <div class="hero-text-overlay">安全と安心を第一に考えたまちづくり</div> -->
+    </div>
 
     <!-- （２）冒頭（新着情報・今後の予定） -->
     <section id="news">
